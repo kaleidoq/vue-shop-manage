@@ -1,0 +1,86 @@
+<template>
+  <div class="aside">
+    <!-- 点击伸缩 -->
+    <div class="toggle-btn" @click="toggleCollapse">|||</div>
+    <el-menu
+      v-for="item in menu"
+      :key="item.id"
+      unique-opened
+      :collapse="isCollapse"
+      :collapse-transition="false"
+    >
+      <!-- 一级菜单 -->
+      <el-submenu :index="item.id + ''">
+        <template slot="title">
+          <i :class="iconsObj[item.id]"></i>
+          <span>{{ item.authName }}</span>
+        </template>
+        <!-- 二级菜单 -->
+        <el-menu-item
+          :index="subitem.id + ''"
+          v-for="subitem in item.children"
+          :key="subitem.id"
+          @click="toMain()"
+        >
+          <template slot="title">
+            <i class="el-icon-menu"></i>
+            <span>
+              {{ subitem.authName }}
+            </span>
+          </template>
+        </el-menu-item>
+      </el-submenu>
+    </el-menu>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      menu: [],
+      iconsObj: {
+        125: "iconfont icon-user",
+        103: "iconfont icon-tijikongjian",
+        101: "iconfont icon-shangpin",
+        102: "iconfont icon-danju",
+        145: "iconfont icon-baobiao",
+      },
+      isCollapse: false,
+    };
+  },
+  // props: ["isCollapse"],
+  created() {
+    this.getMenu();
+  },
+  methods: {
+    async getMenu() {
+      const { data: res } = await this.$axios.get("menus");
+      console.log(res.data);
+      if (res.meta.status != 200) return this.$message.error(res.meta.msg);
+      this.menu = res.data;
+    },
+    toggleCollapse() {
+      this.isCollapse = !this.isCollapse;
+      this.$emit("getCollapse", this.isCollapse);
+    },
+  },
+};
+</script>
+
+<style lang="less" scoped>
+.aside {
+  el-menu {
+    border-right: 0;
+  }
+}
+.toggle-btn {
+  background-color: #8bdca4af;
+  line-height: 24px;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.iconfont {
+  margin-right: 14px;
+}
+</style>

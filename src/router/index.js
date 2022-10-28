@@ -4,10 +4,20 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [{
+        path: '/',
+        redirect: '/main'
+    },
+    {
+        path: '/main',
+        name: 'main',
+        component: () =>
+            import ('../views/Main.vue'),
+    },
+    {
         path: '/home',
         name: 'home',
         component: () =>
-            import ('../views/Home.vue')
+            import ('../views/Home.vue'),
     },
     {
         // 登录页面
@@ -30,7 +40,6 @@ router.beforeEach((to, from, next) => {
         // 查看是否存在token，不存在就跳登录
     if (!token) return next('/login')
     next()
-
 })
 
 export default router

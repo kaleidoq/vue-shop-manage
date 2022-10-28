@@ -91,7 +91,7 @@ export default {
         console.log(res);
         // 传入token
         sessionStorage.setItem("token", res.data.token);
-        this.$router.push("/home");
+        this.$router.push("/");
       });
     },
     // 重置账号信息
@@ -142,7 +142,7 @@ export default {
     /deep/.el-button:focus,
     .el-button:hover {
       color: #3da728;
-      background-color: #ecf5eb;
+      background-color: #f0faf0;
     }
   }
 }
