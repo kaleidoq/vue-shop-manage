@@ -8,16 +8,17 @@
       unique-opened
       :collapse="isCollapse"
       :collapse-transition="false"
+      router
     >
       <!-- 一级菜单 -->
-      <el-submenu :index="item.id + ''">
+      <el-submenu :index="'' + item.path">
         <template slot="title">
           <i :class="iconsObj[item.id]"></i>
           <span>{{ item.authName }}</span>
         </template>
         <!-- 二级菜单 -->
         <el-menu-item
-          :index="subitem.id + ''"
+          :index="'' + item.path"
           v-for="subitem in item.children"
           :key="subitem.id"
           @click="toMain()"
