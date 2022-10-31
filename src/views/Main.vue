@@ -5,9 +5,13 @@
     </el-aside>
 
     <el-container style="height: 100%">
-      <el-header class="header">
-        <span>商店后台</span>
-        <el-button class="btn" @click="logout">退出</el-button>
+      <el-header class="header" height="70px">
+        <div class="header-title">
+          <span>商店后台</span>
+          <el-button class="btn" @click="logout">退出</el-button>
+        </div>
+
+        <bread-crumb></bread-crumb>
       </el-header>
 
       <el-main>
@@ -20,8 +24,9 @@
 
 <script>
 import CommonAside from "@/components/CommonAside.vue";
+import BreadCrumb from "@/components/BreadCrumb.vue";
 export default {
-  components: { CommonAside },
+  components: { CommonAside, BreadCrumb },
   data() {
     return {
       isCollapse: false,
@@ -46,7 +51,16 @@ export default {
 .header {
   // background-color: #effaec;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+
+  .header-title {
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.el-main {
+  padding: 10px 20px;
 }
 </style>

@@ -12,12 +12,19 @@ const routes = [{
         name: 'main',
         component: () =>
             import ('../views/Main.vue'),
+        children: [{
+            path: '/users',
+            name: 'users',
+            component: () =>
+                import ('../views/user/Users.vue'),
+        }, ]
     },
     {
         path: '/home',
         name: 'home',
         component: () =>
             import ('../views/Home.vue'),
+
     },
     {
         // 登录页面
@@ -41,5 +48,15 @@ router.beforeEach((to, from, next) => {
     if (!token) return next('/login')
     next()
 })
+
+// 重写这两个方法解决重复路由导向的问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+const originalReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace(location) {
+    return originalReplace.call(this, location).catch(err => err)
+}
 
 export default router
