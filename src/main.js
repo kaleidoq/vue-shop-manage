@@ -13,6 +13,8 @@ import './assets/fonts/iconfont.css'
 import axios from 'axios'
 // 全局样式
 import "@/assets/css/global.less"
+// 导入tree-grid
+import treeTable from 'vue-table-with-tree-grid'
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false
@@ -21,8 +23,7 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios
     // 设置axios的基本路径
 axios.defaults.baseURL = 'https://lianghj.top:8888/api/private/v1/'
-
-// 添加请求拦截器
+    // 添加请求拦截器
 axios.interceptors.request.use(function(config) {
     // 在发送请求之前做些什么
     const token = sessionStorage.getItem('token')
@@ -30,6 +31,8 @@ axios.interceptors.request.use(function(config) {
         // console.log(config)
     return config;
 });
+
+Vue.component('tree-table', treeTable)
 
 new Vue({
     router,
