@@ -38,7 +38,8 @@
               >三级</el-tag
             >
           </template>
-          <template slot="opt" slot-scope="scope">
+          <template slot="opt">
+            <!-- slot-scope="scope" -->
             <el-button type="primary" icon="el-icon-edit" size="mini"
               >编辑</el-button
             >
@@ -87,7 +88,6 @@
             :props="parentCateProp"
             @change="changeCascader"
             clearable
-            change-on-select
           ></el-cascader>
         </el-form-item>
       </el-form>
@@ -159,6 +159,7 @@ export default {
         value: "cat_id",
         label: "cat_name",
         children: "children",
+        checkStrictly: true, //可以只选择前两个级别的分类
       },
       seleCate: [],
     };

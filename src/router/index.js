@@ -13,26 +13,36 @@ const routes = [{
         component: () =>
             import ('../views/Main.vue'),
         children: [{
-            path: '/users',
-            name: 'users',
-            component: () =>
-                import ('../views/user/Users.vue'),
-        }, {
-            path: '/rights',
-            name: 'rights',
-            component: () =>
-                import ('../views/power/Rights.vue'),
-        }, {
-            path: '/roles',
-            name: 'roles',
-            component: () =>
-                import ('../views/power/Roles.vue'),
-        }, {
-            path: '/categories',
-            name: 'categories',
-            component: () =>
-                import ('../views/goods/Cate.vue'),
-        }, ]
+                path: '/users',
+                name: 'users',
+                component: () =>
+                    import ('../views/user/Users.vue'),
+            },
+            {
+                path: '/rights',
+                name: 'rights',
+                component: () =>
+                    import ('../views/power/Rights.vue'),
+            },
+            {
+                path: '/roles',
+                name: 'roles',
+                component: () =>
+                    import ('../views/power/Roles.vue'),
+            },
+            {
+                path: '/categories',
+                name: 'categories',
+                component: () =>
+                    import ('../views/goods/Cate.vue'),
+            },
+            {
+                path: '/params',
+                name: 'params',
+                component: () =>
+                    import ('../views/goods/Params.vue'),
+            },
+        ]
     },
     {
         path: '/home',
