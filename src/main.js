@@ -32,6 +32,19 @@ axios.interceptors.request.use(function(config) {
     return config;
 });
 
+//将时间戳变为 yyyy-mm-dd hh:mm:ss 格式
+Vue.filter('dateFormat', (orginVal) => {
+    const dt = new Date(orginVal)
+    const y = dt.getFullYear()
+        //dt.getMonth()是从0开始计数的
+    const m = (dt.getMonth() + 1 + '').padStart(2, '0') //padStart判断字符串是否够2位,不够就用0补位
+    const d = (dt.getDate() + '').padStart(2, '0')
+    const hh = (dt.getHours() + '').padStart(2, '0')
+    const mm = (dt.getMinutes() + '').padStart(2, '0')
+    const ss = (dt.getSeconds() + '').padStart(2, '0')
+    return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+})
+
 Vue.component('tree-table', treeTable)
 
 new Vue({
