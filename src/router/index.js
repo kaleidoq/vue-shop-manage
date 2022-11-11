@@ -60,6 +60,12 @@ const routes = [{
                 component: () =>
                     import ('../views/orders/Order.vue'),
             },
+            {
+                path: '/reports',
+                name: 'reports',
+                component: () =>
+                    import ('../views/report/Reports.vue'),
+            },
         ]
     },
     {
